@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manasa Ramaka | Scrum Master Portfolio</title>
+<meta name="description" content="Agile-focused facilitator with 5 years of experience facilitating Scrum ceremonies, enabling cross-functional teams, and supporting delivery across payments and enterprise environments." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070914;
+  --bg-2: #0b1020;
+  --panel: rgba(255,255,255,0.06);
+  --text: #eef2ff;
+  --muted: #9ca8c7;
+  --line: rgba(255,255,255,0.12);
+  --indigo: #6c63ff;
+  --pink: #ff3ea5;
+  --cyan: #31d7ff;
+  --amber: #ffb020;
+  --shadow: 0 20px 70px rgba(0,0,0,0.45);
+  --radius: 24px;
+  --nav-h: 78px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(108,99,255,0.16), transparent 26%),
+    radial-gradient(circle at 82% 14%, rgba(255,62,165,0.12), transparent 22%),
+    radial-gradient(circle at 45% 82%, rgba(49,215,255,0.08), transparent 24%),
+    var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  cursor: none;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,.8) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,.5) 1px, transparent 1px);
+  background-size: 26px 26px, 34px 34px;
+  mix-blend-mode: soft-light;
+  z-index: 2;
+}
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: #05070f; }
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 2px solid #05070f;
+  background: linear-gradient(180deg, var(--pink), var(--indigo), var(--cyan));
+}
+#particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2000;
+  transform: translate(-50%, -50%);
+}
+.cursor-dot {
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, white 0%, var(--cyan) 30%, var(--pink) 100%);
+  box-shadow: 0 0 18px var(--cyan), 0 0 30px rgba(255, 62, 165, 0.55);
+}
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: 0 0 22px rgba(108,99,255,.35), inset 0 0 12px rgba(49,215,255,0.2);
+}
+.loader {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #060810, #090d1d 50%, #0f1024);
+  display: grid;
+  place-items: center;
+  z-index: 3000;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.loader.hidden { opacity: 0; visibility: hidden; }
+.loader-inner { text-align: center; }
+.loader-mark {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: linear-gradient(90deg, var(--cyan), var(--pink), var(--amber), var(--indigo));
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 2s linear infinite;
+}
+.loader-bar {
+  width: min(300px, 70vw);
+  height: 8px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.loader-bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--pink), var(--amber), var(--cyan), var(--indigo));
+  animation: loadBar 2s ease forwards;
+}
+.glass {
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.navbar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translate(-50%, -140%);
+  width: min(1180px, calc(100% - 24px));
+  min-height: var(--nav-h);
+  padding: 16px 22px;
+  border-radius: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  animation: navDrop 0.9s cubic-bezier(.2,.8,.2,1) 0.5s forwards;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  letter-spacing: .02em;
+}
+.logo-badge {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255,62,165,.22), rgba(49,215,255,.2));
+  border: 1px solid rgba(255,255,255,.12);
+}
+.nav-links {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+  opacity: .9;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .3s ease;
+  background: linear-gradient(90deg, var(--pink), var(--cyan), var(--amber));
+}
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+main {
+  width: min(1180px, calc(100% - 28px));
+  margin: 0 auto;
+  padding-top: calc(var(--nav-h) + 40px);
+  position: relative;
+  z-index: 5;
+}
+section { padding: 56px 0; }
+.section-head { margin-bottom: 22px; }
+.kicker {
+  color: var(--cyan);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  margin-bottom: 10px;
+}
+.section-head h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1;
+  margin: 0 0 10px;
+}
+.section-head p {
+  color: var(--muted);
+  max-width: 760px;
+  margin: 0;
+}
+.hero {
+  min-height: calc(100vh - 110px);
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 28px;
+  padding-top: 12px;
+}
+.hero-left { padding-top: 8px; }
+.top-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.quick-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: .92rem;
+  color: #e9f9ff;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.11);
+  text-decoration: none;
+}
+.availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: .92rem;
+  color: #d7f8ff;
+  background: rgba(49,215,255,.08);
+  border: 1px solid rgba(49,215,255,.22);
+}
+.pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 0 rgba(49,215,255,0.5);
+  animation: pulse 1.8s infinite;
+}
+.hero h1 {
+  margin: 16px 0 8px;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: .95;
+}
+.shimmer-text {
+  background: linear-gradient(90deg, var(--text), var(--pink), var(--cyan), var(--amber), var(--text));
+  background-size: 240% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+.hero .subtitle {
+  font-size: clamp(1.05rem, 2.8vw, 1.55rem);
+  color: #d4dcff;
+  margin-bottom: 14px;
+}
+.hero p {
+  color: var(--muted);
+  font-size: 1.02rem;
+  max-width: 630px;
+  margin-top: 0;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 14px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,.12);
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(0,0,0,.28);
+  border-color: rgba(255,255,255,.25);
+}
+.btn-primary {
+  background: linear-gradient(90deg, rgba(108,99,255,.22), rgba(255,62,165,.2), rgba(49,215,255,.2));
+}
+.btn-secondary { background: rgba(255,255,255,.04); }
+.hero-card-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 480px;
+}
+.orb {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,62,165,.34), rgba(108,99,255,.12), transparent 70%);
+  filter: blur(20px);
+  z-index: 0;
+}
+.dashed-ring {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255,255,255,.14);
+  animation: spin 18s linear infinite;
+  z-index: 0;
+}
+.hero-card {
+  width: min(388px, 95%);
+  padding: 30px;
+  border-radius: 28px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: floatCard 6s ease-in-out infinite;
+}
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(49,215,255,.45), rgba(255,62,165,.45), rgba(255,176,32,.35), rgba(108,99,255,.45));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.initials {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, rgba(255,62,165,.18), rgba(49,215,255,.18));
+  border: 1px solid rgba(255,255,255,.12);
+  margin-bottom: 18px;
+}
+.hero-card h3 {
+  margin: 0;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+}
+.hero-card p { margin: 10px 0 16px; }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.stat {
+  padding: 14px 10px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  text-align: center;
+}
+.stat strong {
+  display: block;
+  font-size: 1.25rem;
+  font-family: 'Syne', sans-serif;
+}
+.stat span {
+  display: block;
+  margin-top: 6px;
+  font-size: .85rem;
+  color: var(--muted);
+}
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  margin-top: 30px;
+  background: rgba(255,255,255,.02);
+}
+.marquee-track {
+  display: inline-flex;
+  gap: 38px;
+  min-width: max-content;
+  animation: marquee 22s linear infinite;
+}
+.marquee span {
+  color: #dfe5ff;
+  opacity: .82;
+  font-weight: 500;
+}
+.skills-tiles, .cert-grid, .projects-grid, .awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.apps-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 430px);
+  justify-content: start;
+  gap: 18px;
+}
+.skill-tile, .cert-card, .project-card, .app-card, .award-card {
+  position: relative;
+  padding: 24px;
+  border-radius: 22px;
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.app-card {
+  min-height: 520px;
+}
+.skill-tile {
+  cursor: pointer;
+}
+.skill-tile:hover, .cert-card:hover, .project-card:hover, .app-card:hover, .award-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(49,215,255,.26);
+  box-shadow: 0 18px 38px rgba(0,0,0,.24);
+}
+.skill-tile h3, .cert-card h3, .project-card h3, .app-card h3, .award-card h3 {
+  margin: 0 0 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+}
+.skill-tile p, .cert-card p, .project-card p, .app-card p, .award-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.7;
+}
+.tile-icon, .emoji {
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+}
+.skill-drawer {
+  margin-top: 18px;
+  display: none;
+  animation: drawerFade .28s ease;
+}
+.skill-tile.open .skill-drawer { display: block; }
+.skill-row { margin-bottom: 14px; }
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+.skill-track {
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  overflow: hidden;
+  position: relative;
+}
+.skill-fill {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--indigo), var(--pink), var(--cyan), var(--amber));
+  position: relative;
+  transition: width 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.skill-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.75), transparent);
+  transform: skewX(-20deg);
+  opacity: 0;
+}
+.skill-fill.animated::after {
+  animation: sheen 1.2s ease .7s 1;
+  opacity: 1;
+}
+.tech-cloud {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.tech-chip {
+  display: inline-flex;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  color: #eff2ff;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  cursor: pointer;
+}
+.tech-chip:hover {
+  transform: translateY(-6px);
+  border-color: rgba(49,215,255,.35);
+  box-shadow: 0 14px 28px rgba(0,0,0,.25);
+}
+.skill-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 14, .72);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2500;
+  padding: 18px;
+}
+.skill-modal.open { display: flex; }
+.skill-modal-card {
+  width: min(540px, 96%);
+  padding: 26px;
+  border-radius: 24px;
+}
+.skill-modal-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+}
+.skill-modal h3 {
+  margin: 0 0 8px;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.7rem;
+}
+.skill-modal p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+.close-btn {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  color: var(--text);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.timeline {
+  position: relative;
+  padding-left: 20px;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(var(--indigo), var(--pink), var(--cyan), var(--amber));
+  filter: drop-shadow(0 0 8px rgba(108,99,255,.4));
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+  padding-left: 34px;
+}
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 26px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--cyan), var(--pink));
+  box-shadow: 0 0 20px rgba(49,215,255,.4);
+}
+.timeline-card {
+  padding: 24px;
+  border-radius: 24px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.timeline-card:hover {
+  transform: translateX(12px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.32);
+}
+.timeline-top {
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+}
+.timeline-card h3 {
+  margin: 0 0 6px;
+  font-family: 'Syne', sans-serif;
+}
+.company { color: var(--cyan); margin: 0 0 4px; }
+.date-pill {
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: .86rem;
+  color: #fff;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.timeline-card ul {
+  padding-left: 20px;
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+.timeline-card li + li { margin-top: 10px; }
+.card-link {
+  display: inline-flex;
+  margin-top: 16px;
+  align-items: center;
+  gap: 8px;
+  color: #f0e7ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.tag {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  font-size: .84rem;
+}
+.edu-lang {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 22px;
+}
+.edu-stack {
+  display: grid;
+  gap: 18px;
+}
+.edu-card {
+  padding: 22px;
+  border-radius: 24px;
+}
+.edu-card h3 {
+  margin: 0 0 8px;
+  font-family: 'Syne', sans-serif;
+}
+.institution { color: var(--cyan); }
+.score { color: #ffd88a; }
+.lang-wrap {
+  padding: 22px;
+  border-radius: 24px;
+}
+.lang-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+}
+.lang-badge {
+  min-width: 130px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 16px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.lang-badge small { color: var(--muted); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr .9fr;
+  gap: 24px;
+  align-items: center;
+}
+.contact-cards {
+  display: grid;
+  gap: 16px;
+}
+.contact-card {
+  padding: 18px 20px;
+  border-radius: 22px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.contact-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+}
+.contact-card span { color: var(--muted); }
+.contact-card a {
+  color: var(--text);
+  text-decoration: none;
+  word-break: break-word;
+}
+.contact-avatar-area {
+  min-height: 340px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(49,215,255,.2);
+  animation: ripple 3s infinite;
+}
+.ripple.r1 { width: 150px; height: 150px; animation-delay: 0s; }
+.ripple.r2 { width: 210px; height: 210px; animation-delay: 1s; }
+.ripple.r3 { width: 280px; height: 280px; animation-delay: 2s; }
+.contact-initials {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 2.3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, rgba(255,62,165,.18), rgba(49,215,255,.18));
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 0 36px rgba(108,99,255,.25);
+}
+.cta-end {
+  margin-top: 26px;
+  padding: 26px;
+  border-radius: 26px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cta-end h3 {
+  margin: 0 0 8px;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+}
+.cta-end p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 580px;
+}
+.footer { padding: 1px 0 24px; text-align: center; color: transparent; font-size: 0; }
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.slide-left { transform: translateX(-40px); }
+.reveal.slide-right { transform: translateX(40px); }
+.reveal.left { transform: translateX(-40px); }
+.reveal.right { transform: translateX(40px); }
+.reveal.visible { opacity: 1; transform: translate(0,0); }
+@keyframes navDrop { to { transform: translate(-50%, 0); } }
+@keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes loadBar { from { width: 0%; } to { width: 100%; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(49,215,255,.45); } 70% { box-shadow: 0 0 0 12px rgba(49,215,255,0); } 100% { box-shadow: 0 0 0 0 rgba(49,215,255,0); } }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes floatCard { 0%,100% { transform: translateY(0px) rotateX(6deg) rotateY(-8deg); } 50% { transform: translateY(-16px) rotateX(-4deg) rotateY(8deg); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes sheen { from { left: -40%; } to { left: 120%; } }
+@keyframes ripple { 0% { opacity: .8; transform: scale(.72); } 80% { opacity: 0; transform: scale(1.18); } 100% { opacity: 0; transform: scale(1.18); } }
+@keyframes drawerFade { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1040px) {
+  .hero, .edu-lang, .contact-grid { grid-template-columns: 1fr; }
+  .skills-tiles, .cert-grid, .projects-grid, .awards-grid { grid-template-columns: 1fr 1fr; }
+  .apps-grid { grid-template-columns: minmax(320px, 430px); }
+  .hero-card-wrap { min-height: 420px; }
+}
+@media (max-width: 680px) {
+  .navbar { flex-direction: column; align-items: start; }
+  .nav-links { gap: 12px; width: 100%; }
+  main { padding-top: 126px; }
+  section { padding: 44px 0; }
+  .hero { min-height: auto; padding-top: 8px; }
+  .skills-tiles, .cert-grid, .projects-grid, .awards-grid, .stat-grid { grid-template-columns: 1fr; }
+  .apps-grid { grid-template-columns: 1fr; }
+  .timeline-top { flex-direction: column; }
+  .cta-end { align-items: start; }
+}
+</style>
+</head>
+<body>
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-mark">MR</div>
+    <div class="loader-bar"><span></span></div>
+  </div>
+</div>
+
+<canvas id="particles" aria-hidden="true"></canvas>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<div class="skill-modal" id="skillModal" aria-hidden="true">
+  <div class="skill-modal-card glass">
+    <div class="skill-modal-top">
+      <div>
+        <h3 id="modalTitle">Skill</h3>
+        <p id="modalText">Skill details</p>
+      </div>
+      <button class="close-btn" id="closeModal" aria-label="Close">✕</button>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar glass">
+  <div class="logo">
+    <div class="logo-badge">MR</div>
+    <span>Manasa Ramaka</span>
+  </div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#apps">Apps</a>
+    <a href="#awards">Awards</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-left reveal slide-left visible">
+      <div class="top-contact-row">
+        <a class="quick-pill" href="mailto:manasaramaka14@gmail.com">✉️ manasaramaka14@gmail.com</a>
+        <a class="quick-pill" href="#" target="_blank" rel="noopener">in LinkedIn</a>
+        <a class="quick-pill" href="#" target="_blank" rel="noopener">⌘ GitHub</a>
+      </div>
+      <div class="availability"><span class="pulse"></span>Open to full-time opportunities across the United States and flexible to relocate</div>
+      <h1 class="shimmer-text">Manasa Ramaka</h1>
+      <div class="subtitle">Scrum Master | Agile Delivery | SAFe Practitioner</div>
+      <p>Agile-focused facilitator with 5 years of experience facilitating Scrum ceremonies, enabling cross-functional teams, and supporting delivery across payments and enterprise environments. Skilled in sprint planning, backlog refinement, and removing impediments to improve team performance.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Let’s Connect</a>
+        <a class="btn btn-secondary" href="#experience">View Experience</a>
+      </div>
+
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>Novartis</span><span>Connecticut Education Network</span><span>Epam Systems</span><span>Mastercard</span><span>LeaderJam</span><span>University of Connecticut</span>
+          <span>Novartis</span><span>Connecticut Education Network</span><span>Epam Systems</span><span>Mastercard</span><span>LeaderJam</span><span>University of Connecticut</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-card-wrap reveal slide-right visible">
+      <div class="orb"></div>
+      <div class="dashed-ring"></div>
+      <div class="hero-card glass">
+        <div class="initials">MR</div>
+        <h3>Agile Delivery Snapshot</h3>
+        <p>Facilitating ceremonies, supporting PI Planning, improving backlog quality, and enabling delivery consistency across cross-functional teams.</p>
+        <div class="stat-grid">
+          <div class="stat"><strong>5</strong><span>Years in Agile teams</span></div>
+          <div class="stat"><strong>95%</strong><span>On-time release rate</span></div>
+          <div class="stat"><strong>25%</strong><span>Less rework</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head reveal fade-up">
+      <div class="kicker">Capabilities</div>
+      <h2>Skills & Tools</h2>
+      <p>Click each tile to expand the skills inside it. Click any tech chip for a quick context pop-up.</p>
+    </div>
+
+    <div class="skills-tiles">
+      <div class="skill-tile glass reveal" data-skill-tile>
+        <div class="tile-icon">🌀</div>
+        <h3>Agile & Scrum</h3>
+        <p>Core Scrum framework knowledge, team facilitation, ceremonies, coaching, and delivery planning.</p>
+        <div class="skill-drawer">
+          <div class="skill-row"><div class="skill-label"><span>Scrum Framework & Ceremonies</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" data-width="95%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Team Facilitation & Enablement</span><span>93%</span></div><div class="skill-track"><div class="skill-fill" data-width="93%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Servant Leadership</span><span>92%</span></div><div class="skill-track"><div class="skill-fill" data-width="92%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Agile (Kanban, SAFe)</span><span>91%</span></div><div class="skill-track"><div class="skill-fill" data-width="91%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Sprint Planning</span><span>94%</span></div><div class="skill-track"><div class="skill-fill" data-width="94%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Sprint Retrospectives</span><span>92%</span></div><div class="skill-track"><div class="skill-fill" data-width="92%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Backlog Refinement</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Agile Coaching</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-width="88%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Impediment Removal</span><span>91%</span></div><div class="skill-track"><div class="skill-fill" data-width="91%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>PI Planning</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-tile glass reveal" data-skill-tile>
+        <div class="tile-icon">📊</div>
+        <h3>Tracking & Delivery</h3>
+        <p>Operational visibility, metrics, sprint tracking, risk identification, and reporting for delivery alignment.</p>
+        <div class="skill-drawer">
+          <div class="skill-row"><div class="skill-label"><span>Burndown & Velocity Tracking</span><span>89%</span></div><div class="skill-track"><div class="skill-fill" data-width="89%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>DoR & DoD</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-width="88%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>KPI Dashboards</span><span>91%</span></div><div class="skill-track"><div class="skill-fill" data-width="91%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Risk Identification</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Dependency Coordination</span><span>89%</span></div><div class="skill-track"><div class="skill-fill" data-width="89%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Stakeholder Reporting</span><span>92%</span></div><div class="skill-track"><div class="skill-fill" data-width="92%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="skill-tile glass reveal" data-skill-tile>
+        <div class="tile-icon">🛠️</div>
+        <h3>Tools & Technical Support</h3>
+        <p>Delivery platforms, analytics tools, and technical capabilities that support Agile execution.</p>
+        <div class="skill-drawer">
+          <div class="skill-row"><div class="skill-label"><span>Jira</span><span>93%</span></div><div class="skill-track"><div class="skill-fill" data-width="93%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Azure DevOps</span><span>86%</span></div><div class="skill-track"><div class="skill-fill" data-width="86%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Confluence</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Power BI</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>ServiceNow</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" data-width="82%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>SQL</span><span>89%</span></div><div class="skill-track"><div class="skill-fill" data-width="89%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>Python</span><span>84%</span></div><div class="skill-track"><div class="skill-fill" data-width="84%"></div></div></div>
+          <div class="skill-row"><div class="skill-label"><span>LLMs & GenAI</span><span>86%</span></div><div class="skill-track"><div class="skill-fill" data-width="86%"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech-cloud reveal fade-up">
+      <span class="tech-chip" data-title="Jira" data-text="Used to support sprint planning, work tracking, metrics visibility, and coordination across Agile teams.">Jira</span>
+      <span class="tech-chip" data-title="Azure DevOps" data-text="Supports Agile delivery workflows, backlog management, and team execution tracking.">Azure DevOps</span>
+      <span class="tech-chip" data-title="Confluence" data-text="Used for documentation, shared team visibility, and cross-functional collaboration.">Confluence</span>
+      <span class="tech-chip" data-title="PI Planning" data-text="A key SAFe-aligned capability for coordinating dependencies and maintaining delivery alignment across teams.">PI Planning</span>
+      <span class="tech-chip" data-title="Burndown & Velocity Tracking" data-text="Used to monitor sprint progress, identify risks early, and improve team transparency.">Burndown & Velocity</span>
+      <span class="tech-chip" data-title="Backlog Refinement" data-text="Supports readiness, clarity, and alignment before work enters the sprint.">Backlog Refinement</span>
+      <span class="tech-chip" data-title="Power BI" data-text="Used to surface delivery metrics, KPI visibility, and operational reporting for stakeholders.">Power BI</span>
+      <span class="tech-chip" data-title="ServiceNow" data-text="Supports operational visibility and process coordination across enterprise environments.">ServiceNow</span>
+      <span class="tech-chip" data-title="SQL" data-text="Helps support analytics, reporting, and data-backed operational decision-making.">SQL</span>
+      <span class="tech-chip" data-title="GenAI" data-text="Used in applied systems and workflow improvement to strengthen clarity, automation, and delivery readiness.">GenAI</span>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="section-head reveal fade-up">
+      <div class="kicker">Growth</div>
+      <h2>Certifications</h2>
+      <p>Certifications in progress aligned with Scrum, Agile delivery, and product ownership.</p>
+    </div>
+    <div class="cert-grid">
+      <article class="cert-card glass reveal fade-up">
+        <div class="emoji">📘</div>
+        <h3>Certified Scrum Product Owner (CSPO)</h3>
+        <p>Scrum Alliance — In Progress</p>
+      </article>
+      <article class="cert-card glass reveal fade-up">
+        <div class="emoji">🏅</div>
+        <h3>Certified Scrum Master (CSM)</h3>
+        <p>Scrum Alliance — In Progress</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head reveal fade-up">
+      <div class="kicker">Journey</div>
+      <h2>Experience Timeline</h2>
+      <p>Experience across Agile delivery, cross-functional coordination, sprint support, and enterprise operations.</p>
+    </div>
+    <div class="timeline">
+      <article class="timeline-item reveal left">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card glass">
+          <div class="timeline-top">
+            <div><h3>Business Data Analyst Intern, (Agile & Project Planning) | Novartis</h3></div>
+            <span class="date-pill">June 2025 – December 2025</span>
+          </div>
+          <ul>
+            <li>Developed Jira-based tracking frameworks and defined project metrics for 10+ team members, improving sprint visibility, resource planning, and work tracking across cross-functional teams to support sprint coordination and team delivery</li>
+            <li>Built Power BI dashboards to track 25+ KPIs and monitor performance across reporting and reconciliation workflows, enabling 20% faster identification of risks and supporting proactive issue resolution</li>
+            <li>Streamlined reporting workflows and reduced manual processing by 35%, improving data reliability and enabling more efficient cross-functional execution across reconciliation and operational processes</li>
+            <li>Evaluated automation opportunities using Microsoft Copilot to enhance operational workflows, improving transparency for leadership and supporting continuous improvement initiatives within reporting teams</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal right">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card glass">
+          <div class="timeline-top">
+            <div><h3>Data & Reporting Analyst, (Operations & Agile Coordination) | Connecticut Education Network</h3></div>
+            <span class="date-pill">October 2024 – Present</span>
+          </div>
+          <ul>
+            <li>Developed KPI dashboards tracking operational performance for 30+ stakeholders, improving team coordination and sprint Visibility by 45%</li>
+            <li>Led reconciliation workflows, resolving a $50K billing discrepancy and mitigating financial risk through analysis and stakeholder collaboration</li>
+            <li>Streamlined operations by integrating Salesforce, ServiceNow, and Google Sheets, reducing manual effort by 40% and improving data transparency for planning and daily standups.</li>
+            <li>Prepared weekly and monthly reports on performance metrics, risks, and impediments, improving operational response time by 20%and support leadership decision-making</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal left">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card glass">
+          <div class="timeline-top">
+            <div><h3>Associate Business Analyst, (Agile/scrum/SAFe) | Epam Systems Pvt, Ltd.</h3></div>
+            <span class="date-pill">January 2022 – August 2024</span>
+          </div>
+          <ul>
+            <li>Facilitated Scrum ceremonies including sprint planning, Daily Scrum, sprint reviews, and retrospectives in an Agile Scrum and SAFe environment</li>
+            <li>Supported PI Planning across cross-functional teams, coordinating dependencies across multiple workstreams to maintain delivery alignment, achieving a 95% on-time release rate and reducing delivery cycles from 6 to 4 months</li>
+            <li>Partnered with the Product Owner to improve backlog quality, reducing rework by 25% by establishing DoR and DoD criteria and translating business needs into sprint-ready user stories, ensuring alignment across engineering, QA, and stakeholders</li>
+            <li>Coached and guided cross-functional teams on Agile principles, fostering continuous improvement across Mastercard Payments and Cards workflows to support 1M+ quarterly transactions and improve delivery consistency</li>
+            <li>Tracked burndown metrics and velocity to monitor sprint progress, identify risks 2 sprints early, and improve transparency across teams</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal right">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card glass">
+          <div class="timeline-top">
+            <div><h3>Agile Product & Marketing Analyst | LeaderJam</h3></div>
+            <span class="date-pill">October 2021 – December 2021</span>
+          </div>
+          <ul>
+            <li>Facilitated daily standups and Agile ceremonies for cross-functional teams, improving team alignment and increasing stakeholder engagement by 45% through structured communication and transparency</li>
+            <li>Coached UX, design, and development teams on Agile collaboration, driving an 18% improvement in navigation scores through iterative feedback and ad-hoc sprint demos</li>
+            <li>Synthesized UAT feedback into action items across Figma and WordPress, ensuring business alignment and improving user retention by 13%</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head reveal fade-up">
+      <div class="kicker">Builds</div>
+      <h2>Projects</h2>
+      <p>Selected projects showcasing analytics, AI, and product-focused problem solving.</p>
+    </div>
+    <div class="projects-grid">
+      <article class="project-card glass reveal fade-up">
+        <div class="emoji">📝</div>
+        <h3>AI Requirements Clarity Auditor</h3>
+        <p>Built a pre-delivery quality gate using Gemini API and Streamlit to assess project requirements for ambiguity, scope gaps, and delivery risks, generating sprint-ready acceptance criteria and audit reports to reduce rework and improve team delivery readiness.</p>
+        <div class="tags">
+          <span class="tag">Gemini API</span><span class="tag">Streamlit</span><span class="tag">Requirements</span><span class="tag">Delivery Risk</span>
+        </div>
+        <a class="card-link" href="https://github.com/Manasaramaka/ai-requirement-clarity-auditor" target="_blank" rel="noopener">View repository ↗</a>
+      </article>
+      <article class="project-card glass reveal fade-up">
+        <div class="emoji">🧠</div>
+        <h3>AI-Based Mental Health Risk Analysis</h3>
+        <p>Developed an NLP-based pipeline to identify and classify risk indicators from unstructured data, achieving 85% accuracy and enabling structured risk assessment to support data-driven decision-making and intervention planning.</p>
+        <div class="tags">
+          <span class="tag">NLP</span><span class="tag">Risk Analysis</span><span class="tag">AI</span><span class="tag">IRJMETS</span>
+        </div>
+        <a class="card-link" href="https://github.com/Manasaramaka/A-NOVEL-FRAMEWORK-TO-MITIGATE-MENTAL-HEALTH-ISSUES-USING-NLP" target="_blank" rel="noopener">View repository ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="apps">
+    <div class="section-head reveal fade-up">
+      <div class="kicker">Apps</div>
+      <h2>Applications Created</h2>
+      <p>Practical applications built with data and AI to solve real-world problems.</p>
+    </div>
+    <div class="apps-grid">
+      <article class="app-card glass reveal fade-up">
+        <div class="emoji">🚀</div>
+        <h3>AI Requirement Clarity Auditor App</h3>
+        <p>Interactive application that evaluates product requirements for ambiguity, completeness, and requirement quality before sprint execution.</p>
+        <p style="margin-top:18px;">This adds real product-facing app development proof to the portfolio, not just academic projects.</p>
+        <div class="tags">
+          <span class="tag">Streamlit</span><span class="tag">AI</span><span class="tag">Product Requirements</span><span class="tag">Quality Gate</span>
+        </div>
+        <a class="card-link" href="https://ai-requirement-clarity-auditor.streamlit.app/" target="_blank" rel="noopener">Launch application ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="awards">
+    <div class="section-head reveal fade-up">
+      <div class="kicker">Recognition</div>
+      <h2>Awards & Achievements</h2>
+      <p>Recognition for academic excellence and applied work in analytics and AI.</p>
+    </div>
+    <div class="awards-grid">
+      <article class="award-card glass reveal fade-up">
+        <div class="emoji">🏆</div>
+        <h3>ACORD AI Student Challenge Winner</h3>
+        <p>Recognized by ACORD for applied work using AI tools to analyze insurance data, engineer prompts, and contribute to insurance development standards.
+        <br><a class="card-link" href="https://www.dig-in.com/news/acord-announces-winner-of-ai-student-challenge" target="_blank">View publication ↗</a></p>
+      </article>
+      <article class="award-card glass reveal fade-up">
+        <div class="emoji">🎓</div>
+        <h3>Undergraduate Academic Distinction</h3>
+        <p>Awarded third position based on GPA across the Bachelor of Technology in Computer Science & Engineering program at Jawaharlal Nehru Technological University.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head reveal fade-up">
+      <div class="kicker">Foundation</div>
+      <h2>Education & Languages</h2>
+      <p>Academic foundation in analytics, project management, and computer science, complemented by multilingual communication.</p>
+    </div>
+    <div class="edu-lang">
+      <div class="edu-stack">
+        <div class="edu-card glass reveal slide-left">
+          <h3>Master Of Science (M.S.), Business Analytics and Project Management</h3>
+          <p class="institution">University of Connecticut</p>
+          <p>CT, US</p>
+          <p>August 2024 – May 2026</p>
+          <p class="score">GPA - 3.86</p>
+        </div>
+        <div class="edu-card glass reveal slide-left">
+          <h3>Bachelor of Technology (B.Tech), Computer Science & Engineering</h3>
+          <p class="institution">Jawaharlal Nehru Technological University</p>
+          <p>TS, India</p>
+          <p>August 2022</p>
+          <p class="score">Graduated with academic distinction</p>
+        </div>
+      </div>
+
+      <div class="lang-wrap glass reveal slide-right">
+        <h3 style="font-family:'Syne',sans-serif; margin-top:0;">Languages</h3>
+        <p style="color:var(--muted);">Professional communication across multiple languages.</p>
+        <div class="lang-grid">
+          <span class="lang-badge reveal fade-up"><strong>English</strong><small>Professional</small></span>
+          <span class="lang-badge reveal fade-up"><strong>Telugu</strong><small>Professional</small></span>
+          <span class="lang-badge reveal fade-up"><strong>Hindi</strong><small>Professional</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head reveal fade-up">
+      <div class="kicker">Reach Out</div>
+      <h2>Contact</h2>
+      <p>Open to Scrum Master, Agile delivery, and cross-functional coordination opportunities.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-cards">
+          <div class="contact-card glass reveal slide-left"><div><strong>Email</strong><br><span>Primary contact</span></div><a href="mailto:manasaramaka14@gmail.com">manasaramaka14@gmail.com</a></div>
+          <div class="contact-card glass reveal slide-left"><div><strong>Phone</strong><br><span>Direct line</span></div><a href="tel:8608697052">(860) 869-7052</a></div>
+          <div class="contact-card glass reveal slide-left"><div><strong>LinkedIn</strong><br><span>Professional profile</span></div><a href="#" target="_blank" rel="noopener">Add LinkedIn URL</a></div>
+          <div class="contact-card glass reveal slide-left"><div><strong>GitHub</strong><br><span>Projects & code</span></div><a href="#" target="_blank" rel="noopener">Add GitHub URL</a></div>
+          <div class="contact-card glass reveal slide-left"><div><strong>Availability</strong><br><span>Status</span></div><span>Open to full-time opportunities across the United States and flexible to relocate</span></div>
+        </div>
+
+        <div class="cta-end glass reveal fade-up">
+          <div>
+            <h3>Start a conversation</h3>
+            <p>Interested in Scrum Master, Agile delivery, or cross-functional team enablement opportunities? I’d love to connect.</p>
+          </div>
+          <a class="btn btn-primary" href="mailto:manasaramaka14@gmail.com">Let’s talk</a>
+        </div>
+      </div>
+
+      <div class="contact-avatar-area reveal slide-right">
+        <div class="ripple r1"></div>
+        <div class="ripple r2"></div>
+        <div class="ripple r3"></div>
+        <div class="contact-initials">MR</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">.</div>
+</main>
+
+<script>
+const loader = document.getElementById('loader');
+setTimeout(() => loader.classList.add('hidden'), 2000);
+
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+let ringX = mouseX, ringY = mouseY;
+window.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  dot.style.left = mouseX + 'px';
+  dot.style.top = mouseY + 'px';
+});
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.18;
+  ringY += (mouseY - ringY) * 0.18;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.18 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.querySelectorAll('[data-skill-tile]').forEach(tile => {
+  tile.addEventListener('click', () => {
+    const wasOpen = tile.classList.contains('open');
+    document.querySelectorAll('[data-skill-tile]').forEach(t => t.classList.remove('open'));
+    if (!wasOpen) {
+      tile.classList.add('open');
+      tile.querySelectorAll('.skill-fill').forEach(fill => {
+        if (!fill.dataset.done) {
+          fill.style.width = fill.dataset.width;
+          fill.classList.add('animated');
+          fill.dataset.done = 'true';
+        }
+      });
+    }
+  });
+});
+
+const skillModal = document.getElementById('skillModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalText = document.getElementById('modalText');
+const closeModal = document.getElementById('closeModal');
+
+document.querySelectorAll('.tech-chip').forEach(chip => {
+  chip.addEventListener('click', (e) => {
+    e.stopPropagation();
+    modalTitle.textContent = chip.dataset.title || chip.textContent.trim();
+    modalText.textContent = chip.dataset.text || "A valuable capability included in the profile.";
+    skillModal.classList.add('open');
+    skillModal.setAttribute('aria-hidden', 'false');
+  });
+});
+closeModal.addEventListener('click', () => {
+  skillModal.classList.remove('open');
+  skillModal.setAttribute('aria-hidden', 'true');
+});
+skillModal.addEventListener('click', (e) => {
+  if (e.target === skillModal) {
+    skillModal.classList.remove('open');
+    skillModal.setAttribute('aria-hidden', 'true');
+  }
+});
+
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const colors = ['#6c63ff', '#ff3ea5', '#31d7ff', '#ffb020'];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function createParticles() {
+  const count = Math.min(110, Math.floor((window.innerWidth * window.innerHeight) / 14000));
+  particles = [];
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.55,
+      vy: (Math.random() - 0.5) * 0.55,
+      r: Math.random() * 2.2 + 1,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
+}
+createParticles();
+window.addEventListener('resize', createParticles);
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = 0.85;
+    ctx.fill();
+  }
+
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const a = particles[i];
+      const b = particles[j];
+      const dx = a.x - b.x;
+      const dy = a.y - b.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+        grad.addColorStop(0, a.color);
+        grad.addColorStop(1, b.color);
+        ctx.strokeStyle = grad;
+        ctx.globalAlpha = 1 - dist / 120;
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
+    }
+  }
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+const heroCard = document.querySelector('.hero-card');
+const heroWrap = document.querySelector('.hero-card-wrap');
+heroWrap.addEventListener('mousemove', (e) => {
+  const rect = heroCard.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const rotateY = ((x / rect.width) - 0.5) * 14;
+  const rotateX = (0.5 - (y / rect.height)) * 14;
+  heroCard.style.transform = `translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+heroWrap.addEventListener('mouseleave', () => {
+  heroCard.style.transform = '';
+});
+</script>
+</body>
+</html>
